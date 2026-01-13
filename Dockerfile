@@ -1,13 +1,26 @@
-# Użyj lokalnego serwera HTTP zamiast nginx
-FROM alpine:3.18
-
-# Instaluj prosty serwer HTTP
-RUN apk add --no-cache busybox
+# Dockerfile dla strony błędu
+FROM nginx:alpine
 
 # Skopiuj stronę HTML
-COPY . /www
-WORKDIR /www
+COPY index.html /usr/share/nginx/html/index.html
 
-# Uruchom prosty serwer HTTP na porcie 8080
-EXPOSE 8080
-CMD ["busybox", "httpd", "-f", "-p", "8080", "-h", "/www"]
+# Modyfikuj konfigurację nginx jeśli trzeba
+RUN echo 'server { \
+    listen 80; \
+    server_name _; \
+    root /usr/share/nginx/html; \
+    index index.html; \
+    \
+    location / { \
+        try_files \$uri \$uri/ =404; \
+    } \
+    \
+    # Cache control dla statycznej strony \
+    location ~* \.(html)$ { \
+        expires -1; \
+        add_header Cache-Control "no-store, no-cache, must-revalidate"; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
