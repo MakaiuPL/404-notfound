@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Strona tymczasowo niedostępna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        
+        .glow { box-shadow: 0 0 30px rgba(99, 102, 241, 0.15); }
+        
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex items-center justify-center p-4 bg-grid-pattern">
+    <div class="max-w-xl mx-auto text-center relative z-10">
+        <!-- Animated Background Element -->
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-purple-900/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-900/10 rounded-full blur-3xl"></div>
+        
+        <!-- Icon Container -->
+        <div class="relative mb-8">
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 blur-2xl rounded-full mx-auto w-40 h-40"></div>
+            <div class="relative w-28 h-28 mx-auto bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-800 rounded-2xl flex items-center justify-center glow animate-float">
+                <!-- Question mark icon for universal message -->
+                <svg class="w-14 h-14 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                          d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Main Message -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-gray-100">
+            Strona niedostępna
+        </h1>
+        
+        <!-- Status Badge -->
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-gray-900/80 border border-gray-800 mb-6">
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-400 mr-2"></div>
+            <span class="text-sm font-medium text-gray-300">Status: Nieznaleziono</span>
+        </div>
+        
+        <!-- Universal Message -->
+        <div class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mb-8">
+            <div class="space-y-4">
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    Nie udało się znaleźć strony, której szukasz.
+                </p>
+                <p class="text-gray-400">
+                    Może to oznaczać, że:
+                </p>
+                <ul class="text-gray-400 text-left space-y-2 max-w-md mx-auto">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Wpisałeś nieprawidłowy adres</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Strona została przeniesiona lub usunięta</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Trwają prace techniczne lub konserwacja</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Technical Info (Subtle) -->
+        <div class="border-t border-gray-800/50 pt-6">
+            <div class="text-xs text-gray-500 space-y-2">
+                <div class="flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Ta strona pojawia się dla wszystkich niedostępnych usług</span>
+                </div>
+                <div class="font-mono text-gray-400 text-sm mt-2">
+                    <span id="current-time"></span> • <span id="requested-url" class="text-gray-500"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show attempted URL (if available)
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedUrl = urlParams.get('url') || document.referrer || window.location.hostname;
+        document.getElementById('requested-url').textContent = requestedUrl;
+        
+        // Current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = 
+                now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'});
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        // Optional: Auto-refresh check every 30 seconds
+        let checkCount = 0;
+        function checkPageAvailability() {
+            if (checkCount < 10) { // Try for 5 minutes
+                checkCount++;
+                // You could add a fetch check here if needed
+            }
+        }
+        setInterval(checkPageAvailability, 30000);
+    </script>
+</body>
+</html>
