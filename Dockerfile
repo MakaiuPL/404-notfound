@@ -1,24 +1,25 @@
-# Dockerfile dla strony błędu
 FROM nginx:alpine
 
-# Skopiuj stronę HTML
+# Kopiuj stronę błędu
 COPY index.html /usr/share/nginx/html/index.html
+COPY 404.html /usr/share/nginx/html/404.html  # Opcjonalnie
 
-# Modyfikuj konfigurację nginx jeśli trzeba
+# Prawidłowy nginx config
 RUN echo 'server { \
     listen 80; \
     server_name _; \
     root /usr/share/nginx/html; \
-    index index.html; \
+    index index.html index.htm; \
     \
     location / { \
-        try_files \$uri \$uri/ =404; \
+        try_files \$uri \$uri/ /index.html;  # Root / → index.html, nieznane → index.html \
     } \
     \
-    # Cache control dla statycznej strony \
+    error_page 404 /404.html;  # Custom 404 jeśli chcesz \
+    \
     location ~* \.(html)$ { \
         expires -1; \
-        add_header Cache-Control "no-store, no-cache, must-revalidate"; \
+        add_header Cache-Control "no-store, no-cache"; \
     } \
 }' > /etc/nginx/conf.d/default.conf
 
