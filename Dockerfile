@@ -1,17 +1,16 @@
 FROM nginx:alpine
 
-# Kopiuj stronę błędu
 COPY index.html /usr/share/nginx/html/index.html
 
-# Nginx config z fallback na index.html
 RUN echo 'server { \
     listen 80; \
-    server_name _; \
     root /usr/share/nginx/html; \
-    index index.html; \
+    index index.html index.htm; \
     \
+    # Obsługa wszystkich ścieżek przez index.html (SPA-style) \
     location / { \
-        try_files \$uri \$uri/ /index.html; \
+        root /usr/share/nginx/html; \
+        try_files \$uri /index.html =404; \
     } \
 }' > /etc/nginx/conf.d/default.conf
 
