@@ -2,24 +2,16 @@ FROM nginx:alpine
 
 # Kopiuj stronę błędu
 COPY index.html /usr/share/nginx/html/index.html
-COPY 404.html /usr/share/nginx/html/404.html  # Opcjonalnie
 
-# Prawidłowy nginx config
+# Nginx config z fallback na index.html
 RUN echo 'server { \
     listen 80; \
     server_name _; \
     root /usr/share/nginx/html; \
-    index index.html index.htm; \
+    index index.html; \
     \
     location / { \
-        try_files \$uri \$uri/ /index.html;  # Root / → index.html, nieznane → index.html \
-    } \
-    \
-    error_page 404 /404.html;  # Custom 404 jeśli chcesz \
-    \
-    location ~* \.(html)$ { \
-        expires -1; \
-        add_header Cache-Control "no-store, no-cache"; \
+        try_files \$uri \$uri/ /index.html; \
     } \
 }' > /etc/nginx/conf.d/default.conf
 
